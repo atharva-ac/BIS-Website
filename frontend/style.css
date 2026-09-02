@@ -1,0 +1,230 @@
+/* ==========================================================================
+   ManakMitra — Universal Design System
+   Shared base, typography, icons, and scrollbar styles applied to every page.
+   ========================================================================== */
+
+/* ---------- Design tokens (from manakmitra_logic/DESIGN.md) ---------- */
+:root {
+  /* Primary */
+  --mm-primary: #004cbb;
+  --mm-primary-dark: #0d4be1;
+  --mm-primary-container: #1463e8;
+  --mm-on-primary: #ffffff;
+  --mm-on-primary-container: #eaedff;
+  --mm-primary-light: #eaf2ff;
+  --mm-primary-soft: #f4f8ff;
+  --mm-inverse-primary: #b2c5ff;
+
+  /* Secondary */
+  --mm-secondary: #6346c8;
+  --mm-secondary-container: #977cff;
+  --mm-on-secondary: #ffffff;
+
+  /* Tertiary */
+  --mm-tertiary: #006041;
+  --mm-tertiary-container: #007b55;
+  --mm-on-tertiary: #ffffff;
+
+  /* Surfaces */
+  --mm-surface: #ffffff;
+  --mm-surface-soft: #f8fafc;
+  --mm-surface-dim: #d1daf4;
+  --mm-surface-container-low: #f1f3ff;
+  --mm-surface-container: #e9edff;
+  --mm-surface-container-high: #e1e8ff;
+  --mm-surface-container-highest: #d9e2fc;
+  --mm-surface-variant: #d9e2fc;
+  --mm-bg-app: #f5f8fc;
+  --mm-inverse-surface: #273044;
+
+  /* Text */
+  --mm-on-surface: #121b2e;
+  --mm-on-surface-variant: #424654;
+  --mm-text-secondary: #526075;
+  --mm-text-muted: #7b8799;
+  --mm-inverse-on-surface: #edf0ff;
+  --mm-on-background: #121b2e;
+
+  /* Borders & outlines */
+  --mm-border: #e3e9f1;
+  --mm-border-strong: #d1dae7;
+  --mm-outline: #737786;
+  --mm-outline-variant: #c2c6d7;
+
+  /* Status */
+  --mm-success: #15966a;
+  --mm-warning: #c78a00;
+  --mm-danger: #d44848;
+  --mm-error: #ba1a1a;
+  --mm-on-error: #ffffff;
+  --mm-error-container: #ffdad6;
+  --mm-on-error-container: #93000a;
+
+  /* Elevation */
+  --mm-shadow-sm: 0 1px 2px rgba(18, 27, 46, 0.06);
+  --mm-shadow: 0 4px 12px rgba(18, 27, 46, 0.1);
+  --mm-shadow-lg: 0 12px 28px rgba(18, 27, 46, 0.16);
+  --mm-overlay: rgba(10, 20, 35, 0.46);
+
+  /* Spacing / layout */
+  --mm-sidebar-width: 250px;
+  --mm-topbar-height: 70px;
+  --mm-container-padding: 30px;
+  --mm-card-padding: 22px;
+  --mm-gap-md: 15px;
+  --mm-gap-sm: 8px;
+
+  /* Shape */
+  --mm-radius: 14px;
+  --mm-radius-md: 12px;
+  --mm-radius-lg: 20px;
+  --mm-radius-sm: 9px;
+  --mm-radius-pill: 9999px;
+}
+
+/* ---------- Base reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--mm-on-surface);
+  background-color: var(--mm-bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Material Symbols ---------- */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Filled states (all supported notations for consistency across pages) */
+.material-symbols-outlined.filled,
+.material-symbols-outlined.fill,
+.material-symbols-outlined[data-weight='fill'] {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ---------- Global scrollbars (universal density) ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--mm-border-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--mm-outline);
+}
+
+/* ---------- Loading skeletons ---------- */
+.skeleton-card {
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-border);
+  border-radius: var(--mm-radius);
+  padding: var(--mm-card-padding);
+  box-shadow: var(--mm-shadow-sm);
+}
+.skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--mm-surface-container-low) 25%, var(--mm-surface-container-high) 37%, var(--mm-surface-container-low) 63%);
+  background-size: 400% 100%;
+  -webkit-animation: shimmer 1.4s ease infinite;
+  animation: shimmer 1.4s ease infinite;
+}
+.skeleton-line:last-child { margin-bottom: 0; }
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ---------- Empty / Error states ---------- */
+.state-block { border-radius: var(--mm-radius); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+  max-width: 340px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--mm-inverse-surface);
+  color: var(--mm-inverse-on-surface);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+  box-shadow: var(--mm-shadow-lg);
+  opacity: 0;
+  -webkit-transform: translateY(8px);
+  transform: translateY(8px);
+  -webkit-transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.toast.show { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
+.toast-success { border-left: 4px solid var(--mm-success); }
+.toast-error { border-left: 4px solid var(--mm-danger); }
+.toast-info { border-left: 4px solid var(--mm-primary); }
