@@ -1,0 +1,547 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ManakMitra - BIS Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#424654",
+                      "text-muted": "#7b8799",
+                      "success": "#15966a",
+                      "on-tertiary-container": "#acffd5",
+                      "surface-soft": "#f8fafc",
+                      "surface-container-high": "#e1e8ff",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#1e0060",
+                      "surface-container-low": "#f1f3ff",
+                      "primary-fixed": "#dae2ff",
+                      "warning": "#c78a00",
+                      "on-secondary-container": "#2d0086",
+                      "inverse-primary": "#b2c5ff",
+                      "surface": "#ffffff",
+                      "tertiary-container": "#007b55",
+                      "inverse-surface": "#273044",
+                      "tertiary": "#006041",
+                      "primary-dark": "#0d4be1",
+                      "secondary-fixed-dim": "#cbbeff",
+                      "secondary-fixed": "#e7deff",
+                      "surface-container-highest": "#d9e2fc",
+                      "on-secondary": "#ffffff",
+                      "danger": "#d44848",
+                      "border-strong": "#d1dae7",
+                      "on-tertiary-fixed": "#002114",
+                      "on-tertiary-fixed-variant": "#005137",
+                      "primary": "#004cbb",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#eaedff",
+                      "on-primary": "#ffffff",
+                      "bg-app": "#f5f8fc",
+                      "surface-container": "#e9edff",
+                      "primary-container": "#1463e8",
+                      "outline": "#737786",
+                      "secondary": "#6346c8",
+                      "surface-dim": "#d1daf4",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#0040a1",
+                      "on-surface": "#121b2e",
+                      "secondary-container": "#977cff",
+                      "inverse-on-surface": "#edf0ff",
+                      "tertiary-fixed": "#88f8c4",
+                      "outline-variant": "#c2c6d7",
+                      "background": "#f9f9ff",
+                      "overlay": "rgba(10, 20, 35, 0.46)",
+                      "primary-soft": "#f4f8ff",
+                      "on-background": "#121b2e",
+                      "text-secondary": "#526075",
+                      "on-primary-fixed": "#001848",
+                      "primary-fixed-dim": "#b2c5ff",
+                      "tertiary-fixed-dim": "#6bdba9",
+                      "on-secondary-fixed-variant": "#4b2aaf",
+                      "surface-variant": "#d9e2fc",
+                      "surface-bright": "#f9f9ff",
+                      "surface-tint": "#0056d2",
+                      "primary-light": "#eaf2ff",
+                      "on-error": "#ffffff",
+                      "border": "#e3e9f1",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "card-padding": "22px",
+                      "gap-md": "15px",
+                      "container-padding": "30px",
+                      "sidebar-width": "250px",
+                      "topbar-height": "70px",
+                      "gap-sm": "8px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "page-header": ["Inter"],
+                      "hero-title": ["Inter"],
+                      "body-base": ["Inter"],
+                      "micro-badge": ["Inter"],
+                      "section-head": ["Inter"],
+                      "caption": ["Inter"],
+                      "label-meta": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "hero-title-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-sm": ["12px", {"lineHeight": "1.7", "fontWeight": "500"}],
+                      "page-header": ["30px", {"lineHeight": "1.15", "letterSpacing": "-0.7px", "fontWeight": "600"}],
+                      "hero-title": ["62px", {"lineHeight": "1.02", "letterSpacing": "-2.2px", "fontWeight": "700"}],
+                      "body-base": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "micro-badge": ["9px", {"letterSpacing": "0.04em", "fontWeight": "800"}],
+                      "section-head": ["18px", {"letterSpacing": "-0.3px", "fontWeight": "600"}],
+                      "caption": ["10px", {"letterSpacing": "0.08em", "fontWeight": "700"}],
+                      "label-meta": ["11px", {"fontWeight": "800"}],
+                      "body-lg": ["15px", {"lineHeight": "1.75", "fontWeight": "400"}],
+                      "hero-title-mobile": ["38px", {"lineHeight": "1.1", "fontWeight": "700"}]
+              }
+      }
+          },
+        }
+    </script>
+<link href="style.css" rel="stylesheet"/>
+<style>
+        /* Custom Scrollbar for chat */
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background-color: #d1dae7;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-app text-on-surface font-body-base overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col gap-md p-card-padding h-full border-r border-border dark:border-outline-variant bg-surface shadow-sm z-10 w-[250px] flex-shrink-0 transition-all duration-180 ease-in-out">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold">M</div>
+<div class="flex flex-col">
+<span class="font-page-header text-page-header font-bold text-primary" style="font-size: 20px;">ManakMitra</span>
+<span class="font-caption text-caption text-text-muted">BIS Compliance AI</span>
+</div>
+</div>
+<button data-new-analysis-action class="w-full py-2 px-4 bg-primary text-on-primary rounded-lg font-body-sm text-body-sm font-semibold flex items-center justify-center gap-2 hover:bg-primary-dark transition-colors duration-180 mb-4 shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+            New Analysis
+        </button>
+<div class="flex-1 flex flex-col gap-2 overflow-y-auto">
+<a data-nav="Home" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">home</span>
+<span class="font-body-sm text-body-sm">Home</span>
+</a>
+<a data-nav="BIS Assistant" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">smart_toy</span>
+<span class="font-body-sm text-body-sm">BIS Assistant</span>
+</a>
+<a data-nav="Product Analyzer" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">analytics</span>
+<span class="font-body-sm text-body-sm">Product Analyzer</span>
+</a>
+<a data-nav="Standards Discovery" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">search_check</span>
+<span class="font-body-sm text-body-sm">Standards Discovery</span>
+</a>
+<a data-nav="Lab Finder" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">biotech</span>
+<span class="font-body-sm text-body-sm">Lab Finder</span>
+</a>
+<a data-nav="My Roadmaps" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">route</span>
+<span class="font-body-sm text-body-sm">My Roadmaps</span>
+</a>
+<a data-nav="Admin Dashboard" class="flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">admin_panel_settings</span>
+<span class="font-body-sm text-body-sm">Admin Dashboard</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-border flex flex-col gap-2">
+<a data-nav="Settings" class="flex items-center gap-3 px-3 py-2 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">settings</span>
+<span class="font-body-sm text-body-sm">Settings</span>
+</a>
+<a data-nav="Support" data-support class="flex items-center gap-3 px-3 py-2 rounded-[10px] text-text-secondary hover:bg-surface-container-low transition-colors duration-180" href="#">
+<span class="material-symbols-outlined" style="font-size: 18px;">help</span>
+<span class="font-body-sm text-body-sm">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden relative">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full h-[70px] z-50 backdrop-blur-[12px] bg-surface/94 shadow-sm flex justify-between items-center px-container-padding transition-opacity duration-200">
+<!-- Mobile Menu Toggle (hidden on desktop) -->
+<div class="md:hidden flex items-center gap-4">
+<button class="text-text-secondary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-section-head text-section-head font-bold text-primary">ManakMitra</span>
+</div>
+<!-- Desktop Search (Left aligned as per JSON) -->
+<div class="hidden md:flex flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" style="font-size: 20px;">search</span>
+<input data-global-search class="w-full bg-surface-soft border border-border-strong rounded-lg pl-10 pr-4 py-2 text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder="Search standard IDs, products, or guidelines..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4 ml-auto">
+<button data-lang class="text-text-muted hover:text-primary transition-colors duration-180">
+<span class="material-symbols-outlined">language</span>
+</button>
+<button data-dark-icon class="text-text-muted hover:text-primary transition-colors duration-180">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button data-notifications class="text-text-muted hover:text-primary transition-colors duration-180 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-danger rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border ml-2 cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate compliance officer, male, mid-30s, wearing a modern blue suit. Clean lighting, modern office background slightly blurred. High-end corporate portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz12cJe-INGBezBoR_PqE9mQtrRkqJOeAZt1qaLx3u9QlVJ6-cqW4Da_VlBihS9U4oSeqAYqh4c_MYHNXvMGVJXvfWaoSHrm20hM-Vj3m2L8_UGiTgx8LJ9oRZPjpbHTdGT8s9TU9ic02QcYrkpEvrcZVvNO0laYnjA6QnUhWurwM4fdPbJldK6vq_-6YY-mKlxiiAUX7VzY-1NNf7lE70MZiFLkhGq79Oqvz7ABwr4saLtd-ZNSGl"/>
+</div>
+</div>
+</header>
+<!-- Chat Workspace Layout -->
+<main class="flex-1 flex overflow-hidden p-container-padding gap-container-padding relative z-0">
+<!-- Chat History Sidebar (Inner) -->
+<aside class="hidden lg:flex w-64 flex-col gap-4 bg-surface rounded-xl border border-border shadow-sm p-4 h-full">
+<div class="flex items-center justify-between border-b border-border pb-3">
+<h3 class="font-section-head text-section-head text-on-surface">Recent Chats</h3>
+<button class="text-primary hover:bg-primary-soft p-1 rounded transition-colors"><span class="material-symbols-outlined" style="font-size: 20px;">edit_square</span></button>
+</div>
+<div id="chat-list" class="flex-1 overflow-y-auto chat-scroll flex flex-col gap-2 pr-2">
+</div>
+</aside>
+<!-- Main Chat Area -->
+<section class="flex-1 flex flex-col bg-surface rounded-xl border border-border shadow-sm h-full overflow-hidden relative">
+<!-- Chat Header -->
+<div class="px-6 py-4 border-b border-border flex items-center justify-between bg-surface-soft">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-light flex items-center justify-center text-primary">
+<span class="material-symbols-outlined filled">smart_toy</span>
+</div>
+<div>
+<h2 class="font-section-head text-section-head text-on-surface">BIS Assistant (Strict RAG)</h2>
+<p id="assistant-status" class="font-caption text-caption text-text-secondary flex items-center gap-1">
+<span id="assistant-status-dot" class="w-2 h-2 rounded-full bg-warning inline-block"></span> <span id="assistant-status-text">RAG Engine: Checking server connection...</span>
+                            </p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded border border-border-strong text-body-sm font-body-sm text-text-secondary hover:bg-surface-container-low transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">download</span> Export
+                         </button>
+</div>
+</div>
+<!-- Messages Area -->
+<div id="messages" class="flex-1 overflow-y-auto chat-scroll p-6 flex flex-col gap-6">
+</div><!-- Input Area -->
+<div class="p-4 bg-surface border-t border-border">
+<!-- Suggestion Chips -->
+<div class="flex flex-wrap gap-2 mb-3">
+<button data-chip="What standard applies to plugs and socket-outlets?" class="px-3 py-1.5 rounded-full border border-border-strong bg-surface-soft hover:bg-surface-container-low text-body-sm font-body-sm text-text-secondary transition-colors whitespace-nowrap">What standard applies to plugs and sockets?</button>
+<button data-chip="What are the marking durability requirements?" class="px-3 py-1.5 rounded-full border border-border-strong bg-surface-soft hover:bg-surface-container-low text-body-sm font-body-sm text-text-secondary transition-colors whitespace-nowrap">What are the marking durability requirements?</button>
+<button data-chip="List safety requirements under IS 302-2-80" class="px-3 py-1.5 rounded-full border border-border-strong bg-surface-soft hover:bg-surface-container-low text-body-sm font-body-sm text-text-secondary transition-colors whitespace-nowrap">List safety requirements under IS 302-2-80</button>
+</div>
+<!-- Input Box -->
+<div class="relative flex items-end gap-2 bg-surface-soft border border-border-strong rounded-xl p-2 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all shadow-sm">
+<button class="p-2 text-text-muted hover:text-primary transition-colors">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea id="assistant-input" class="flex-1 bg-transparent border-none focus:ring-0 resize-none py-2 text-body-base max-h-32 min-h-[44px]" placeholder="Ask follow-up questions or describe another product..." rows="1"></textarea>
+<button id="assistant-send" class="p-2 bg-primary text-on-primary rounded-lg hover:bg-primary-dark transition-colors h-10 w-10 flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+</button>
+</div>
+<div class="text-center mt-2">
+<span class="font-caption text-caption text-text-muted">AI responses may need manual verification for legal compliance.</span>
+</div>
+</div>
+</section>
+<!-- Context Panel (Right Sidebar) -->
+<aside class="hidden xl:flex w-[300px] flex-col gap-4 h-full">
+<!-- Info Card -->
+<div class="bg-surface rounded-xl border border-border shadow-sm p-4 flex flex-col">
+<h3 class="font-section-head text-section-head text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-size: 20px;">memory</span>
+                        Context Panel
+                    </h3>
+<div class="space-y-4">
+<!-- Entity Extraction -->
+<div>
+<span class="font-label-meta text-label-meta text-text-muted uppercase tracking-wider block mb-2">Entities Collected</span>
+<div id="ctx-entities" class="flex flex-wrap gap-2">
+</div>
+</div>
+<!-- Match Confidence -->
+<div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-meta text-label-meta text-text-muted uppercase tracking-wider block">Standard Match Confidence</span>
+<span id="ctx-badge" class="font-micro-badge text-micro-badge px-1.5 py-0.5 bg-success/10 text-success rounded">HIGH</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 mb-1">
+<div id="ctx-bar" class="bg-success h-1.5 rounded-full" style="width: 0%"></div>
+</div>
+<p id="ctx-note" class="font-caption text-caption text-text-secondary"></p>
+</div>
+<!-- Mode Toggle -->
+<div class="pt-3 border-t border-border">
+<span class="font-label-meta text-label-meta text-text-muted uppercase tracking-wider block mb-2">Evidence Mode</span>
+<label class="flex items-center cursor-pointer p-2 rounded-lg hover:bg-surface-soft border border-transparent hover:border-border transition-all">
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="block bg-primary w-10 h-6 rounded-full"></div>
+<div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-4"></div>
+</div>
+<div class="ml-3 font-body-sm text-body-sm text-on-surface">
+                                    Strict Citation Mode
+                                    <p class="font-caption text-caption text-text-muted block">Forces AI to quote official docs</p>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Related Documents / Quick Links -->
+<div class="bg-surface rounded-xl border border-border shadow-sm p-4 flex-1 flex flex-col min-h-0">
+<h3 class="font-section-head text-section-head text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-size: 20px;">description</span>
+                        Referenced Docs
+                    </h3>
+<div id="ctx-docs" class="flex-1 overflow-y-auto pr-1 space-y-2">
+</div>
+</div>
+</aside>
+</main>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+(function () {
+  var Data = window.ManakData, App = window.ManakApp, $ = App.$;
+  var chat = null;
+
+  function activeChat() {
+    var chats = Data.get('chats');
+    return chats.find(function (c) { return c.id === Data.get('activeChatId'); }) || chats[0];
+  }
+
+  function messageHtml(msg) {
+    var wrap, label, body;
+    if (msg.role === 'user') {
+      wrap = '<div class="flex gap-4 max-w-[85%] ml-auto justify-end">';
+      label = '<span class="font-label-meta text-label-meta text-text-muted uppercase tracking-wider mr-1">You</span>';
+      body = '<div class="bg-primary text-on-primary rounded-2xl rounded-tr-sm p-4 shadow-sm text-body-base">' + App.esc(msg.text) + '</div>';
+      wrap += '<div class="flex flex-col gap-1 items-end">' + label + body + '</div>';
+      // avatar
+      wrap += '<div class="w-8 h-8 rounded-full bg-surface-container-high flex-shrink-0 overflow-hidden border border-border mt-1"><span class="material-symbols-outlined p-1" style="font-size:20px">person</span></div></div>';
+      return wrap;
+    }
+    wrap = '<div class="flex gap-4 max-w-[85%]">';
+    wrap += '<div class="w-8 h-8 rounded-full bg-primary-light flex-shrink-0 flex items-center justify-center text-primary mt-1"><span class="material-symbols-outlined" style="font-size:18px">smart_toy</span></div>';
+    wrap += '<div class="flex flex-col gap-1"><span class="font-label-meta text-label-meta text-text-muted uppercase tracking-wider ml-1">BIS Assistant</span>';
+    wrap += '<div class="bg-surface-soft border border-border rounded-2xl rounded-tl-sm p-4 shadow-sm text-body-base text-on-surface">' + msg.text + '</div></div></div>';
+    return wrap;
+  }
+
+  function renderMessages() {
+    var box = $('#messages');
+    box.innerHTML = chat.messages.map(messageHtml).join('');
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function renderChatList() {
+    var list = $('#chat-list');
+    if (!chat) { list.innerHTML = ''; return; }
+    list.innerHTML = Data.get('chats').map(function (c) {
+      var active = c.id === chat.id;
+      return '<div data-chat="' + c.id + '" class="p-3 rounded-lg cursor-pointer transition-all ' + (active ? 'bg-primary-soft border border-primary-light' : 'hover:bg-surface-soft border border-transparent hover:border-border') + '">' +
+        '<p class="font-body-sm text-body-sm ' + (active ? 'text-primary font-semibold' : 'text-on-surface') + ' line-clamp-1">' + App.esc(c.title) + '</p>' +
+        '<p class="font-caption text-caption text-text-muted mt-1">' + App.esc(c.ts) + '</p></div>';
+    }).join('');
+  }
+
+  function renderContext() {
+    var ctx = chat.context || {};
+    var ents = ctx.entities || [];
+    var entities = $('#ctx-entities');
+    entities.innerHTML = ents.map(function (e) {
+      return '<span class="px-2 py-1 bg-primary-soft text-primary-dark border border-primary-light rounded font-body-sm text-body-sm">' + App.esc(e) + '</span>';
+    }).join('') || '<p class="font-body-sm text-body-sm text-text-muted">No entities collected yet.</p>';
+
+    // Note: this reflects whether the RAG backend found and cited matching
+    // document evidence, NOT a calibrated confidence score. Raw vector
+    // distance isn't a probability, so we deliberately don't turn it into a
+    // fake percentage - that measurably misrepresented answer quality
+    // (verified: correct, well-cited answers scored as low as ~30%, i.e.
+    // "LOW", under the old distance-based formula).
+    if (ctx.grounded === false) {
+      $('#ctx-bar').style.width = '0%';
+      $('#ctx-bar').className = 'bg-text-muted h-1.5 rounded-full';
+      $('#ctx-badge').textContent = 'NO MATCH';
+      $('#ctx-badge').className = 'font-micro-badge text-micro-badge px-1.5 py-0.5 bg-text-muted/10 text-text-muted rounded';
+    } else if (ctx.grounded === true) {
+      $('#ctx-bar').style.width = '100%';
+      $('#ctx-bar').className = 'bg-success h-1.5 rounded-full';
+      $('#ctx-badge').textContent = 'CITED';
+      $('#ctx-badge').className = 'font-micro-badge text-micro-badge px-1.5 py-0.5 bg-success/10 text-success rounded';
+    }
+
+    var std = ctx.standard ? Data.get('standards').find(function (s) { return s.id === ctx.standard; }) : null;
+    $('#ctx-note').textContent = ctx.note || (std ? std.title + ' is a match for the detected entities.' : 'No standard matched yet.');
+
+    var docs = ctx.citedDocs || [];
+    var cdocs = $('#ctx-docs');
+    cdocs.innerHTML = docs.map(function (d) {
+      var inner = '<div class="flex justify-between items-start mb-1"><span class="font-body-sm font-semibold text-primary">' + App.esc(d.title) + '</span>' +
+        (d.id ? '<span class="material-symbols-outlined text-text-muted" style="font-size:16px">open_in_new</span>' : '') + '</div>' +
+        '<p class="font-caption text-caption text-text-secondary line-clamp-2">' + App.esc(d.note || '') + '</p>';
+      if (d.id) {
+        return '<a class="block p-3 rounded-lg border border-border-strong hover:border-primary hover:shadow-sm transition-all bg-surface" href="' + App.routeFor('standards', { q: d.title.split(' ')[1] }) + '">' + inner + '</a>';
+      }
+      return '<div class="block p-3 rounded-lg border border-border-strong bg-surface">' + inner + '</div>';
+    }).join('') || '<p class="font-body-sm text-body-sm text-text-muted">No references yet.</p>';
+  }
+
+  function selectChat(id) {
+    Data.set('activeChatId', id);
+    chat = activeChat();
+    renderChatList();
+    renderMessages();
+    renderContext();
+  }
+
+  function refresh() {
+    var next = Data.get('chats').find(function (c) { return c.id === Data.get('activeChatId'); });
+    if (next) chat = next;
+    renderChatList();
+    renderMessages();
+    renderContext();
+  }
+
+  function send(text) {
+    text = (text || '').trim();
+    if (!text) return;
+    if (!chat.messages) chat.messages = [];
+
+    // Snapshot prior turns for follow-up context BEFORE adding this turn's
+    // placeholder messages, so the backend doesn't just see itself.
+    var priorHistory = chat.messages.slice();
+
+    var aiMsg = { role: 'ai', text: '🔍 <em>Searching Bureau of Indian Standards (BIS) vector database...</em>' };
+    chat.messages.push({ role: 'user', text: text });
+    chat.messages.push(aiMsg);
+    chat.ts = 'Just now';
+    Data.save();
+    $('#assistant-input').value = '';
+    renderMessages();
+
+    App.ragQuery(text, null, priorHistory, function (err, data) {
+      if (err) {
+        aiMsg.text = '<span class="text-danger">⚠️ ' + App.esc(err.message) + '</span>';
+        Data.save();
+        renderMessages();
+        return;
+      }
+
+      var answerHtml = App.esc(data.answer).replace(/\n/g, '<br/>');
+      var declined = /information not present|no relevant context found/i.test(data.answer || '');
+
+      if (data.sources && data.sources.length > 0 && !declined) {
+        var pages = Array.from(new Set(data.sources.map(function (s) { return s.page_number; }))).join(', ');
+        answerHtml += '<div class="mt-3 pt-2 border-t border-border-strong text-xs font-mono text-primary flex items-center gap-1">' +
+          '<span class="material-symbols-outlined" style="font-size:14px">menu_book</span>' +
+          '<span>Source: Electric Equipments.pdf (Page' + (pages.indexOf(',') !== -1 ? 's: ' : ' ') + pages + ')</span></div>';
+
+        chat.context = chat.context || {};
+        chat.context.grounded = true;
+        chat.context.standard = null;
+        chat.context.note = 'Answer is grounded in the cited pages of Electric Equipments.pdf.';
+        chat.context.citedDocs = data.sources.map(function (s) {
+          return { title: 'Electric Equipments.pdf (Page ' + s.page_number + ')', note: s.content };
+        });
+      } else {
+        chat.context = chat.context || {};
+        chat.context.grounded = false;
+        chat.context.note = 'The document does not appear to contain this information.';
+        chat.context.citedDocs = [];
+      }
+
+      aiMsg.text = answerHtml;
+      Data.save();
+      renderMessages();
+      renderContext();
+    });
+  }
+
+  function checkHealth() {
+    var dot = $('#assistant-status-dot');
+    var label = $('#assistant-status-text');
+    if (!dot || !label) return;
+    App.ragHealth(function (online) {
+      if (online) {
+        dot.className = 'w-2 h-2 rounded-full bg-success inline-block';
+        label.textContent = 'RAG Engine: Online (Chroma Vector DB Connected)';
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-warning inline-block';
+        label.textContent = 'RAG Engine: Standby (run `python main.py` in BIS-Website-main)';
+      }
+    });
+  }
+
+  function init() {
+    var first = Data.get('chats')[0];
+    if (!first) return;
+    if (!Data.get('activeChatId')) Data.set('activeChatId', first.id);
+    chat = activeChat();
+    renderChatList();
+    renderMessages();
+    renderContext();
+    checkHealth();
+
+    $('#chat-list').addEventListener('click', function (e) {
+      var t = e.target.closest('[data-chat]');
+      if (t) selectChat(t.getAttribute('data-chat'));
+    });
+
+    $('#assistant-send').addEventListener('click', function () { send($('#assistant-input').value); });
+
+    var input = $('#assistant-input');
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); }
+    });
+
+    document.addEventListener('click', function (e) {
+      var chip = e.target.closest('[data-chip]');
+      if (chip) { input.value = chip.getAttribute('data-chip'); send(input.value); }
+    });
+
+    var urlQ = App.param('q');
+    if (urlQ) { input.value = urlQ; send(urlQ); }
+    // Note: the topbar's [data-global-search] box is wired globally in
+    // app.js's wireChrome() to jump to this page with ?q= - handled above.
+  }
+
+  Data.onChange(function () { refresh(); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+</script>
+</body></html>

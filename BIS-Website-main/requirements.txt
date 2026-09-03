@@ -1,0 +1,21 @@
+# Core FastAPI Web Server & API dependencies
+fastapi>=0.141.1
+uvicorn>=0.52.4
+pydantic>=2.13.5
+httpx>=0.28.1
+
+# Vector Database & Embeddings
+# NOTE: chromadb's API changed significantly between 0.4.x and 1.x - app.py
+# imports chromadb.errors.NotFoundError, which requires a modern release.
+# The old ">=0.4.0" floor could resolve to a version without that module.
+chromadb>=1.5.9
+
+# LangChain Ecosystem & Document Processing
+# (langchain and langchain-chroma were listed here previously but are never
+# imported anywhere in this codebase - ingest.py uses raw chromadb directly,
+# not langchain's Chroma wrapper. Removed as unused.)
+langchain-community>=0.4.2
+langchain-text-splitters>=1.1.2
+
+# PDF Parsing
+pypdf>=6.16.2

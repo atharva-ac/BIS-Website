@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bis-rag-backend",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["BIS-Website-main/main.py"],
+      "port": 8080
+    },
+    {
+      "name": "root-site-static",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5500"],
+      "port": 5500
+    }
+  ]
+}
